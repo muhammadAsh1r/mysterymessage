@@ -1,76 +1,64 @@
 import {
-    Html,
-    Head,
-    Font,
-    Preview,
-    Heading,
-    Text,
-    Button,
-    Section,
-    Container,
-  } from "@react-email/components";
-  
-  interface VerificationEmailProps {
-    username: string;
-    otp: string;
-  }
-  
-  export default function VerificationEmail({
-    username,
-    otp,
-  }: VerificationEmailProps) {
-    return (
-      <Html lang="en" dir="ltr">
-        <Head>
-          <title>Verification Code</title>
-          <Font
-            fontFamily="Roboto"
-            fallbackFontFamily="Verdana"
-            webFont={{
-              url: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap",
-              format: "woff2",
-            }}
-          />
-        </Head>
-        <Preview>Your verification code is here</Preview>
-        <Section style={{ backgroundColor: "#f4f4f4", padding: "40px 0" }}>
-          <Container
-            style={{
-              backgroundColor: "#ffffff",
-              padding: "30px",
-              borderRadius: "8px",
-              maxWidth: "500px",
-              margin: "0 auto",
-              fontFamily: "'Roboto', Verdana, sans-serif",
-              color: "#333",
-            }}
+  Html,
+  Head,
+  Font,
+  Preview,
+  Heading,
+  Row,
+  Section,
+  Text,
+  Button,
+} from '@react-email/components';
+
+interface VerificationEmailProps {
+  username: string;
+  otp: string;
+}
+
+export default function VerificationEmail({ username, otp }: VerificationEmailProps) {
+  return (
+    <Html lang="en" dir="ltr">
+      <Head>
+        <title>Verification Code</title>
+        <Font
+          fontFamily="Roboto"
+          fallbackFontFamily="Verdana"
+          webFont={{
+            url: 'https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2',
+            format: 'woff2',
+          }}
+          fontWeight={400}
+          fontStyle="normal"
+        />
+      </Head>
+      <Preview>Here&apos;s your verification code: {otp}</Preview>
+      <Section>
+        <Row>
+          <Heading as="h2">Hello {username},</Heading>
+        </Row>
+        <Row>
+          <Text>
+            Thank you for registering. Please use the following verification
+            code to complete your registration:
+          </Text>
+        </Row>
+        <Row>
+          <Text>{otp}</Text> 
+        </Row>
+        <Row>
+          <Text>
+            If you did not request this code, please ignore this email.
+          </Text>
+        </Row>
+        {/* <Row>
+          <Button
+            href={`http://localhost:3000/verify/${username}`}
+            style={{ color: '#61dafb' }}
           >
-            <Heading style={{ fontSize: "24px", marginBottom: "20px" }}>
-              Hello, {username} 👋
-            </Heading>
-            <Text style={{ fontSize: "16px", marginBottom: "16px" }}>
-              Thanks for signing up. To continue, please use the verification code
-              below:
-            </Text>
-            <Text
-              style={{
-                fontSize: "32px",
-                fontWeight: "bold",
-                letterSpacing: "4px",
-                textAlign: "center",
-                margin: "20px 0",
-                color: "#4a90e2",
-              }}
-            >
-              {otp}
-            </Text>
-            <Text style={{ fontSize: "14px", color: "#555" }}>
-              This code is valid for 10 minutes. If you didn’t request this, you
-              can safely ignore this email.
-            </Text>
-          </Container>
-        </Section>
-      </Html>
-    );
-  }
-  
+            Verify here
+          </Button>
+        </Row> */}
+      </Section>
+    </Html>
+  );
+}
